@@ -88,7 +88,7 @@ final class EventPoller {
 
             if let minutes = event.minutesUntilStart() {
                 AirplaneAnimationController.shared.triggerAnimation(
-                    message: "Reunião em \(minutes) min",
+                    message: String(localized: "animation.meetingIn \(minutes)"),
                     title: event.title
                 )
             }

@@ -1,0 +1,54 @@
+/* Connection Status */
+"status.disconnected" = "Desconectado";
+"status.connecting" = "Conectando...";
+"status.connected" = "Conectado";
+"status.error %@" = "Erro: %@";
+"status.connectionFailed" = "Falha na conexão";
+
+/* Menu Bar */
+"menu.nextMeeting" = "Próxima reunião:";
+"menu.inMinutes %lld" = "em %lld min";
+"menu.noMeetings" = "Sem reuniões próximas";
+"menu.remindBefore" = "Avisar antes:";
+"menu.disconnect" = "Desconectar";
+"menu.quit" = "Sair";
+"menu.joinMeeting" = "Entrar na reunião";
+"menu.lastSync %@" = "Último sync: %@";
+"menu.syncNow" = "Sincronizar";
+"menu.calendarSettings" = "Configurações de Calendário";
+
+/* Setup */
+"setup.pasteToken" = "Cole o JWT token (cookie 'session' do DevBuddy):";
+"setup.connect" = "Conectar";
+"setup.openSettings" = "Abrir Configurações do DevBuddy";
+"setup.instructions" = "Para conectar, copie o token de sessão das configurações web do DevBuddy e cole abaixo.";
+"setup.importSecretLabel" = "Import Secret (para sincronização de calendário):";
+"setup.importSecretPlaceholder" = "Cole seu import secret...";
+
+/* Launch at Login */
+"launch.atLogin" = "Abrir com o sistema";
+
+/* Animation */
+"animation.meetingIn %lld" = "Reunião em %lld min";
+
+/* API Errors */
+"error.unauthorized" = "Token inválido ou expirado";
+"error.httpError %lld" = "Erro do servidor (%lld)";
+"error.networkError" = "Sem conexão com o servidor";
+"error.decodingError" = "Resposta inesperada do servidor";
+"error.invalidResponse" = "Resposta inválida";
+"error.invalidURL" = "URL inválida";
+
+/* Calendar Settings */
+"calendarSettings.title" = "Configurações de Sincronização";
+"calendarSettings.calendars" = "Calendários";
+"calendarSettings.noCalendars" = "Nenhum calendário encontrado. Conceda acesso ao calendário nas Configurações do Sistema.";
+"calendarSettings.alias" = "Apelido";
+"calendarSettings.syncInterval" = "Intervalo de sync (min):";
+"calendarSettings.daysAhead" = "Dias à frente:";
+"calendarSettings.importSecret" = "Import Secret:";
+"calendarSettings.save" = "Salvar";
+"calendarSettings.syncNow" = "Sincronizar Agora";
+"calendarSettings.lastSync %@" = "Último sync: %@";
+"calendarSettings.synced %lld %lld" = "Sincronizados %lld eventos de %lld calendários";
+"calendarSettings.accessDenied" = "Acesso ao calendário negado. Abra as Configurações do Sistema para conceder acesso.";

@@ -11,17 +11,17 @@ enum APIError: Error {
     var userMessage: String {
         switch self {
         case .unauthorized:
-            return "Token inválido ou expirado"
+            return String(localized: "error.unauthorized")
         case .httpError(let code):
-            return "Erro do servidor (\(code))"
+            return String(localized: "error.httpError \(code)")
         case .networkError:
-            return "Sem conexão com o servidor"
+            return String(localized: "error.networkError")
         case .decodingError:
-            return "Resposta inesperada do servidor"
+            return String(localized: "error.decodingError")
         case .invalidResponse:
-            return "Resposta inválida"
+            return String(localized: "error.invalidResponse")
         case .invalidURL:
-            return "URL inválida"
+            return String(localized: "error.invalidURL")
         }
     }
 }

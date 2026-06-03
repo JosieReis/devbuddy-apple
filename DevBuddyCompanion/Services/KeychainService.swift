@@ -8,10 +8,45 @@ enum KeychainError: Error {
 
 struct KeychainService {
     private static let service = "com.devbuddy.companion"
-    private static let account = "api-token"
+    private static let tokenAccount = "api-token"
+    private static let importSecretAccount = "import-secret"
+
+    // MARK: - Token
 
     static func save(token: String) throws {
-        let data = Data(token.utf8)
+        try saveItem(account: tokenAccount, value: token)
+    }
+
+    static func load() -> String? {
+        loadItem(account: tokenAccount)
+    }
+
+    static func getToken() -> String? {
+        load()
+    }
+
+    static func delete() throws {
+        try deleteItem(account: tokenAccount)
+    }
+
+    // MARK: - Import Secret
+
+    static func saveImportSecret(_ secret: String) throws {
+        try saveItem(account: importSecretAccount, value: secret)
+    }
+
+    static func loadImportSecret() -> String? {
+        loadItem(account: importSecretAccount)
+    }
+
+    static func deleteImportSecret() throws {
+        try deleteItem(account: importSecretAccount)
+    }
+
+    // MARK: - Generic Keychain Operations
+
+    private static func saveItem(account: String, value: String) throws {
+        let data = Data(value.utf8)
 
         // Delete existing item first
         let deleteQuery: [String: Any] = [
@@ -36,7 +71,7 @@ struct KeychainService {
         }
     }
 
-    static func load() -> String? {
+    private static func loadItem(account: String) -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
@@ -55,7 +90,7 @@ struct KeychainService {
         return String(data: data, encoding: .utf8)
     }
 
-    static func delete() throws {
+    private static func deleteItem(account: String) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
