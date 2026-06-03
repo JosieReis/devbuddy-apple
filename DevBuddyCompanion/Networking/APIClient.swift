@@ -71,6 +71,43 @@ actor APIClient {
         }
     }
 
+    func importEvents(
+        userId: String,
+        source: String,
+        events: [[String: Any]],
+        importSecret: String
+    ) async throws {
+        let payload: [String: Any] = [
+            "userId": userId,
+            "source": source,
+            "events": events,
+        ]
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
+            throw APIError.invalidURL
+        }
+        guard let url = URL(
+            string: "/calendar/import",
+            relativeTo: baseURL
+        ) else {
+            throw APIError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(importSecret, forHTTPHeaderField: "X-Import-Secret")
+        request.httpBody = jsonData
+
+        let (_, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse,
+              200..<300 ~= http.statusCode
+        else {
+            if let http = response as? HTTPURLResponse, http.statusCode == 401 {
+                throw APIError.unauthorized
+            }
+            throw APIError.invalidResponse
+        }
+    }
+
     func updatePreferences(calendarReminderMinutes: Int) async throws {
         guard let url = APIEndpoint.updatePreferences.url(baseURL: baseURL) else {
             throw APIError.invalidURL

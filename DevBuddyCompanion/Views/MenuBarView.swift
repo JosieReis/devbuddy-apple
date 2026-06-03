@@ -3,6 +3,7 @@ import ServiceManagement
 
 struct MenuBarView: View {
     @ObservedObject var appState: AppState
+    @State private var showCalendarSettings = false
 
     var body: some View {
         if appState.hasToken && appState.connectionStatus.isConnected {
@@ -24,14 +25,14 @@ struct MenuBarView: View {
             // Next meeting
             if let event = appState.nextEvent, let minutes = appState.minutesUntilNext {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Próxima reunião:")
+                    Text(String(localized: "menu.nextMeeting"))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                     Text("\(event.title)")
                         .font(.caption)
                         .fontWeight(.medium)
                         .lineLimit(2)
-                    Text("em \(minutes) min")
+                    Text(String(localized: "menu.inMinutes \(minutes)"))
                         .font(.caption)
                         .foregroundStyle(.orange)
 
@@ -43,12 +44,12 @@ struct MenuBarView: View {
                     }
 
                     if let url = event.conferenceUrl {
-                        Link("Entrar na reunião", destination: URL(string: url)!)
+                        Link(String(localized: "menu.joinMeeting"), destination: URL(string: url)!)
                             .font(.caption)
                     }
                 }
             } else {
-                Text("Sem reuniões próximas")
+                Text(String(localized: "menu.noMeetings"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -57,7 +58,7 @@ struct MenuBarView: View {
 
             // Reminder minutes picker
             HStack {
-                Text("Avisar antes:")
+                Text(String(localized: "menu.remindBefore"))
                     .font(.caption)
                 Spacer()
                 Picker("", selection: Binding(
@@ -75,17 +76,38 @@ struct MenuBarView: View {
                 .frame(width: 80)
             }
 
+            // Calendar sync status
+            if let syncDate = appState.lastSyncDate {
+                let formatter = RelativeDateTimeFormatter()
+                Text(String(localized: "menu.lastSync \(formatter.localizedString(for: syncDate, relativeTo: Date()))"))
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+
+            Button(String(localized: "menu.syncNow")) {
+                Task { await appState.syncNow() }
+            }
+            .font(.caption)
+
+            Button(String(localized: "menu.calendarSettings")) {
+                showCalendarSettings = true
+            }
+            .font(.caption)
+            .popover(isPresented: $showCalendarSettings) {
+                CalendarSettingsView(appState: appState)
+            }
+
             // Launch at login
             LaunchAtLoginToggle()
 
             Divider()
 
-            Button("Desconectar") {
+            Button(String(localized: "menu.disconnect")) {
                 appState.disconnect()
             }
             .font(.caption)
 
-            Button("Sair") {
+            Button(String(localized: "menu.quit")) {
                 NSApplication.shared.terminate(nil)
             }
             .font(.caption)
@@ -100,7 +122,7 @@ struct LaunchAtLoginToggle: View {
     @State private var launchAtLogin = false
 
     var body: some View {
-        Toggle("Abrir com o sistema", isOn: $launchAtLogin)
+        Toggle(String(localized: "launch.atLogin"), isOn: $launchAtLogin)
             .font(.caption)
             .onChange(of: launchAtLogin) { _, newValue in
                 do {
