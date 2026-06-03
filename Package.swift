@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "DevBuddyCompanion",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v14)
     ],
@@ -11,7 +12,10 @@ let package = Package(
         .executableTarget(
             name: "DevBuddyCompanion",
             path: "DevBuddyCompanion",
-            exclude: ["Info.plist"]
+            exclude: ["Info.plist"],
+            resources: [
+                .process("Resources")
+            ]
         )
     ]
 )

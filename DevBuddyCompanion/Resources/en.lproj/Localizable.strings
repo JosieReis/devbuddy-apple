@@ -1,0 +1,54 @@
+/* Connection Status */
+"status.disconnected" = "Disconnected";
+"status.connecting" = "Connecting...";
+"status.connected" = "Connected";
+"status.error %@" = "Error: %@";
+"status.connectionFailed" = "Connection failed";
+
+/* Menu Bar */
+"menu.nextMeeting" = "Next meeting:";
+"menu.inMinutes %lld" = "in %lld min";
+"menu.noMeetings" = "No upcoming meetings";
+"menu.remindBefore" = "Remind before:";
+"menu.disconnect" = "Disconnect";
+"menu.quit" = "Quit";
+"menu.joinMeeting" = "Join meeting";
+"menu.lastSync %@" = "Last sync: %@";
+"menu.syncNow" = "Sync Now";
+"menu.calendarSettings" = "Calendar Settings";
+
+/* Setup */
+"setup.pasteToken" = "Paste the JWT token (cookie 'session' from DevBuddy):";
+"setup.connect" = "Connect";
+"setup.openSettings" = "Open DevBuddy Settings";
+"setup.instructions" = "To connect, copy the session token from DevBuddy web settings and paste it below.";
+"setup.importSecretLabel" = "Import Secret (for calendar sync):";
+"setup.importSecretPlaceholder" = "Paste your import secret...";
+
+/* Launch at Login */
+"launch.atLogin" = "Launch at login";
+
+/* Animation */
+"animation.meetingIn %lld" = "Meeting in %lld min";
+
+/* API Errors */
+"error.unauthorized" = "Invalid or expired token";
+"error.httpError %lld" = "Server error (%lld)";
+"error.networkError" = "Cannot connect to server";
+"error.decodingError" = "Unexpected server response";
+"error.invalidResponse" = "Invalid response";
+"error.invalidURL" = "Invalid URL";
+
+/* Calendar Settings */
+"calendarSettings.title" = "Calendar Sync Settings";
+"calendarSettings.calendars" = "Calendars";
+"calendarSettings.noCalendars" = "No calendars found. Grant calendar access in System Settings.";
+"calendarSettings.alias" = "Alias";
+"calendarSettings.syncInterval" = "Sync interval (min):";
+"calendarSettings.daysAhead" = "Days ahead:";
+"calendarSettings.importSecret" = "Import Secret:";
+"calendarSettings.save" = "Save";
+"calendarSettings.syncNow" = "Sync Now";
+"calendarSettings.lastSync %@" = "Last sync: %@";
+"calendarSettings.synced %lld %lld" = "Synced %lld events from %lld calendars";
+"calendarSettings.accessDenied" = "Calendar access denied. Open System Settings to grant access.";
